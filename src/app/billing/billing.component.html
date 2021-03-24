@@ -1,0 +1,84 @@
+<div class="componet-page">
+    <div class="row col-sm-12">
+        <div class="page-title mb_10">
+            <h3 class="mb-0">Biller's Desk</h3>
+            <p>Create new Bill, Manage existing Bills</p>
+        </div>
+    </div>
+    <!-- "userId":1,
+"name":"electricity",
+"amount":500,
+"dueDate":"2021-02-21" -->
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="card custom-shadow frm-crete-bill">
+                <div class="row col-sm-12">
+                    <h5 class="card-title">Create New Bill</h5>
+                </div>
+
+                <form class="form-font" [formGroup]="createBillForm" (ngSubmit)="onSubmit()">
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="user-id">User Id*</label>
+                            <input type="number" class="form-control" formControlName="userId" required>
+                            <span class="text-required"
+                                *ngIf="!createBillForm.controls['userId'].valid && createBillForm.controls['userId']?.touched">
+                                *Required</span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="user-id">Consumer Id*</label>
+                            <input type="number" class="form-control" formControlName="consumerId" required>
+                            <span class="text-required"
+                                *ngIf="!createBillForm.controls['consumerId'].valid && createBillForm.controls['consumerId']?.touched">
+                                *Required</span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <div class="d-flex flex-column billing-type-input">
+                                <label for="type">Type</label>
+                                <p-dropdown [options]="billingTypes" optionLabel="name" placeholder="Select type"
+                                    formControlName="name" required></p-dropdown>
+                                <span class="text-required"
+                                    *ngIf="!createBillForm.controls['name'].valid && createBillForm.controls['name']?.touched">
+                                    *Required</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label for="amount">Amount</label>
+                            <input type="number" class="form-control" formControlName="amount" required>
+                            <span class="text-required"
+                                *ngIf="!createBillForm.controls['amount'].valid && createBillForm.controls['amount']?.touched">
+                                *Required</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-sm-6">
+                            <label for="amount">Due Date</label>
+                            <p-calendar formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true"></p-calendar>
+                            <span class="text-required"
+                                *ngIf="!createBillForm.controls['dueDate'].valid && createBillForm.controls['dueDate']?.touched">
+                                *Required</span>
+                        </div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-12">
+                            <button type="submit" class="btn btn-info btn-sm mr-1"
+                                [disabled]="!createBillForm.valid">Submit</button>
+                            <button type="submit" class="btn btn-info btn-sm"
+                                (click)="resetCreateBillForm()">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="card custom-shadow frm-crete-bill">
+                <div class="row col-sm-12">
+                    <h5 class="card-title">All Bills</h5>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<p-toast key="success"></p-toast>
+<p-toast key="failed"></p-toast>

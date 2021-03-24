@@ -1,0 +1,28 @@
+.dashboard-page {
+    margin: 2rem 25rem 2rem 25rem;
+}
+
+/* .home-page-tile {
+    width: 8rem;
+    height: 8rem;
+    border: 1px solid grey;
+    border-radius: 0.3rem;
+    text-align: center;
+} */
+.home-page-tile {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #aaa;
+    text-decoration: none;
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+    margin: auto;
+}
+
+/* .home-page-tile :hover {
+    color: #0056b3 !important;
+} */
+
+.home-page-tile-content {
+    margin-top: 1.5rem;
+    /* color: #aaaaaa; */
+}

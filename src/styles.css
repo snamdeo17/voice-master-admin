@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    height: 100%;
+    background: #eeeeee;
+}
+.app-logo {
+    font-family: fantasy;
+    font-weight: normal;
+}
+.tile-name {
+    text-decoration: none !important;
+    color: inherit;
+    color: #aaaaaa;
+}
+.tile-name :hover {
+    color: #007bff;
+}
+
+.p-menubar {
+    background: #00bcd4 !important;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-text,
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-icon {
+    color: #fff !important;
+}
+
+.layout-topbar .p-menuitem {
+    border-right: 1px dashed #bffaff;
+}
+
+.custom-shadow {
+    box-shadow: rgb(50 50 93 / 25%) 0px 6px 12px -2px, rgb(0 0 0 / 30%) 0px 3px 7px -3px;
+}
+
+.page-title > h3 {
+    text-align: left;
+    font-size: 22px;
+    color: #302d43;
+}
+
+.page-title > p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #adb4c8;
+}
+
+.form-font {
+    font-size: 14px;
+}
+
+.card-title {
+    margin-bottom: 1.25rem;
+    font-size: 1.125rem;
+    text-transform: capitalize;
+    color: rgba(13, 16, 45, 0.6);
+}
+
+.componet-page {
+    margin: 1rem 2rem 1rem 2rem;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.billing-type-input .p-dropdown {
+    width: 100% !important;
+}
+.text-required {
+    color: #d50000 !important;
+    font-style: italic;
+}
+
+.frm-crete-bill .p-calendar {
+    height: 38px !important;
+}
+.p-menubar .p-menubar-root-list > .p-menuitem > :hover {
+    background: #00bcd4 !important;
+}
