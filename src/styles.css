@@ -18,7 +18,7 @@ body {
 }
 
 .p-menubar {
-    background: #00bcd4 !important;
+    background: #00acc1 !important;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
@@ -83,18 +83,20 @@ body {
 
 /* table css custom changes */
 .custom-table .p-datatable {
-    border: 1px solid #00bcd4 !important;
+    border: 1px solid #00acc1 !important;
 }
 
 .custom-table .p-datatable-thead {
-    border-bottom: 1px solid #00bcd4 !important;
+    border-bottom: 1px solid #00acc1 !important;
     line-height: 0.5;
 }
 
 .custom-table .p-datatable .p-datatable-tbody > tr > td {
     padding: 0.3rem 1rem 0.3rem 1rem !important;
 }
-
+.custom-table .p-datatable .p-datatable-tbody > tr:hover {
+    background: #e0f7fa !important;
+}
 .custom-table .p-paginator {
     font-size: 14px !important;
     display: block !important;

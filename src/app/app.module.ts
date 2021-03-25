@@ -30,6 +30,8 @@ import {TooltipModule} from 'primeng/tooltip';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CustomersComponent } from './customers/customers.component';
 import { CustomersChildComponent } from './customers/customers-child/customers-child.component';
+import { ParentComponent } from './parent/parent.component';
+import { ChildComponent } from './parent/child/child.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { CustomersChildComponent } from './customers/customers-child/customers-c
     BillGeneratorComponent,
     BillingComponent,
     CustomersComponent,
-    CustomersChildComponent
+    CustomersChildComponent,
+    ParentComponent,
+    ChildComponent
   ],
   imports: [
     BrowserModule,
