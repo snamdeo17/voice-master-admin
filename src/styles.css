@@ -80,3 +80,28 @@ body {
 .p-menubar .p-menubar-root-list > .p-menuitem > :hover {
     background: #00bcd4 !important;
 }
+
+/* table css custom changes */
+.custom-table .p-datatable {
+    border: 1px solid #00bcd4 !important;
+}
+
+.custom-table .p-datatable-thead {
+    border-bottom: 1px solid #00bcd4 !important;
+    line-height: 0.5;
+}
+
+.custom-table .p-datatable .p-datatable-tbody > tr > td {
+    padding: 0.3rem 1rem 0.3rem 1rem !important;
+}
+
+.custom-table .p-paginator {
+    font-size: 14px !important;
+    display: block !important;
+    text-align: right !important;
+}
+.custom-active-tag {
+    border: 1px solid #689f38;
+    background: #fff !important;
+    color: #689f38 !important;
+}

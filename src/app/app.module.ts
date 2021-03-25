@@ -22,8 +22,14 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
+import {TableModule} from 'primeng/table';
+import { TagModule } from 'primeng/tag';
+import {SkeletonModule} from 'primeng/skeleton';
+import {TooltipModule} from 'primeng/tooltip';
 
 import { NgxSpinnerModule } from "ngx-spinner";
+import { CustomersComponent } from './customers/customers.component';
+import { CustomersChildComponent } from './customers/customers-child/customers-child.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,9 @@ import { NgxSpinnerModule } from "ngx-spinner";
     DashboardComponent,
     PageNotFoundComponent,
     BillGeneratorComponent,
-    BillingComponent
+    BillingComponent,
+    CustomersComponent,
+    CustomersChildComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +54,11 @@ import { NgxSpinnerModule } from "ngx-spinner";
     CalendarModule,
     HttpClientModule,
     NgxSpinnerModule,
-    ToastModule
+    ToastModule,
+    TableModule,
+    TagModule,
+    SkeletonModule,
+    TooltipModule
   ],
   providers: [
     FilterService,

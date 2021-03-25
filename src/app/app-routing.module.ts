@@ -1,3 +1,4 @@
+import { CustomersComponent } from './customers/customers.component';
 import { BillingComponent } from './billing/billing.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -17,10 +18,14 @@ const routes: Routes = [
     component: DashboardComponent,
     pathMatch: 'full'
   },
-  // lazy route
   {
     path: 'billing',
     component: BillingComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'customers',
+    component: CustomersComponent,
     pathMatch: 'full'
   },
   {
@@ -31,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{useHash: true})],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

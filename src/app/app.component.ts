@@ -26,6 +26,12 @@ export class AppComponent implements OnInit {
         routerLink: 'dashboard'
       },
       {
+        label: 'Customers',
+        icon: 'pi pi-user',
+        routerLink: 'customers'
+
+      },
+      {
         label: 'Billing',
         icon: 'pi pi-dollar',
         routerLink: 'billing'
@@ -56,5 +62,5 @@ export class AppComponent implements OnInit {
       console.log(message)
       this.messageService.add({ key: 'errorToastr', severity: 'error', summary: 'Error', detail: message });
     });
-  } 
+  }
 }

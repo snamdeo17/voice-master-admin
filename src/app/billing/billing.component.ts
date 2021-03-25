@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-billing',
@@ -24,7 +25,7 @@ export class BillingComponent implements OnInit {
     dueDate: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private restService: RestService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private restService: RestService, private messageService: MessageService, private activatedRoute: ActivatedRoute) {
 
     this.billingTypes = [
       { name: 'Electricity', id: 'electricity' },
@@ -35,17 +36,27 @@ export class BillingComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      let action = params['action'] ? params['action'] : undefined;
+      let userId = params['userId'] ? params['userId'] : undefined;
+      if (action && userId) {
+        this.populateData(action, userId)
+      }
+    });
+  }
+
+  populateData(action?: string, userId?: number) {
+    if (action == 'createBill') {
+      this.createBillForm.controls.userId.setValue(userId);
+    }
   }
 
   onSubmit() {
-    //console.warn(this.createBillForm.value);
-    // process Value
-    // http://localhost:8080/api/bill
     let postData: any = {};
     postData.url = '/api/bill';
     postData.data = this.createBillForm.value;
     postData.data.name = this.createBillForm.value.name.id;
-    //postData.data.dueDate = new Date(this.createBillForm.value.dueDate);
     console.log(postData)
     this.restService.postData(postData)
       .subscribe((data: any) => {

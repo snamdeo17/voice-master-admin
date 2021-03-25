@@ -10,8 +10,9 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  getData() {
-    return this.http.get(this.serverUrl);
+  getData(getData: any) {
+    let url = this.serverUrl + getData.url;
+    return this.http.get(url);
   }
 
   postData(postData: any) {
