@@ -1,1 +1,4 @@
-<p>parent works!</p>
+<div>
+    <p>This is parent</p>{{receivedMsg}}
+    <app-child [message] = "message" (messageEvent)="listenMessage($event)"></app-child>
+</div>

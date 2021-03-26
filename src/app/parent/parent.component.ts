@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParentComponent implements OnInit {
 
+  message: string = "Message from Parent";
+  receivedMsg: string;
   constructor() { }
 
   ngOnInit() {
   }
-
+  listenMessage($event) {
+    this.receivedMsg = $event;
+  }
 }

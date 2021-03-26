@@ -1,3 +1,4 @@
+import { ParentComponent } from './parent/parent.component';
 import { CustomersComponent } from './customers/customers.component';
 import { BillingComponent } from './billing/billing.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -21,6 +22,11 @@ const routes: Routes = [
   {
     path: 'billing',
     component: BillingComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'parent',
+    component: ParentComponent,
     pathMatch: 'full'
   },
   {

@@ -26,9 +26,15 @@ body {
 .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link .p-menuitem-icon {
     color: #fff !important;
 }
-
+.p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+    padding: 0.75rem 0.5rem !important;
+}
+.p-menubar-start {
+    margin-right: 10px;
+}
 .layout-topbar .p-menuitem {
-    border-right: 1px dashed #bffaff;
+    /* border-right: 1px dashed #bffaff; */
+    margin-right: 0.2rem;
 }
 
 .custom-shadow {
@@ -81,14 +87,29 @@ body {
     background: #00bcd4 !important;
 }
 
+.p-menuitem-link-active {
+    background: #00bcd4 !important;
+}
+
 /* table css custom changes */
 .custom-table .p-datatable {
-    border: 1px solid #00acc1 !important;
+    /* border: 1px solid #00acc1 !important; */
+    border: 1px solid #e9ecef;
+}
+.custom-table .p-datatable > * {
+    font-size: 14px !important;
+}
+
+.custom-table .p-datatable .p-datatable-thead > tr > th {
+    padding: 0.5rem 1rem 0.5rem 1rem !important;
 }
 
 .custom-table .p-datatable-thead {
     border-bottom: 1px solid #00acc1 !important;
-    line-height: 0.5;
+    /* line-height: 0.5; */
+}
+.custom-table .p-datatable .p-paginator-bottom {
+    padding: 0rem 1rem 0rem 1rem;
 }
 
 .custom-table .p-datatable .p-datatable-tbody > tr > td {
@@ -106,4 +127,7 @@ body {
     border: 1px solid #689f38;
     background: #fff !important;
     color: #689f38 !important;
+}
+.bill-for {
+    font: size 12px !important;
 }

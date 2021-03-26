@@ -5,12 +5,8 @@
             <p>Create new bill, manage existing bills</p>
         </div>
     </div>
-    <!-- "userId":1,
-"name":"electricity",
-"amount":500,
-"dueDate":"2021-02-21" -->
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="card custom-shadow frm-crete-bill">
                 <div class="row col-sm-12">
                     <h5 class="card-title">Create New Bill</h5>
@@ -51,9 +47,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-8">
                             <label for="amount">Due Date</label>
-                            <p-calendar formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true"></p-calendar>
+                            <p-calendar formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true">
+                            </p-calendar>
                             <span class="text-required"
                                 *ngIf="!createBillForm.controls['dueDate'].valid && createBillForm.controls['dueDate']?.touched">
                                 *Required</span>
@@ -70,12 +67,52 @@
                 </form>
             </div>
         </div>
-        <div class="col-sm-8">
-            <div class="card custom-shadow frm-crete-bill">
-                <div class="row col-sm-12">
-                    <h5 class="card-title">All Bills</h5>
-                </div>
-
+        <div class="col-sm-9">
+            <div class="row col-sm-12">
+                <h5 class="card-title">All Bills <span class="bill-for" *ngIf="showSingleUserBill.enabled">-
+                        {{bills?.list[0]?.user?.fname}}&nbsp;{{bills?.list[0]?.user?.lname}}(User Id:
+                        {{showSingleUserBill.userId}})
+                    </span></h5>
+            </div>
+            <div class="custom-table">
+                <p-table [value]="bills.list" autoLayout="true" [paginator]="true" [rows]="10"
+                    [showCurrentPageReport]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [rowsPerPageOptions]="[10,25,50]">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Id</th>
+                            <th>User Id</th>
+                            <th>F. Name</th>
+                            <th>L. Name</th>
+                            <!-- <th>Email</th> -->
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Due On</th>
+                            <th>Paid On</th>
+                            <!-- <th>Req. Payment</th> -->
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-bill>
+                        <tr>
+                            <td>{{bill.id}}</td>
+                            <td>{{bill.user?.userId}}</td>
+                            <td>{{bill.user?.fname}}</td>
+                            <td>{{bill.user?.lname}}</td>
+                            <!-- <td> {{bill.user?.email}} </td> -->
+                            <td> {{bill.name | uppercase}} </td>
+                            <td> {{bill.amount}} </td>
+                            <td>
+                                <p-tag value="{{bill.status}}" severity="(bill.status == 'PENDING'?'success':'danger')"
+                                    [style]="{'margin':'2%'}" styleClass="custom-active-tag"></p-tag>
+                            </td>
+                            <td> {{bill.dueDate.join('-') | date:'mediumDate'}} </td>
+                            <td> {{bill.paidOn}} </td>
+                            <!-- <td> {{bill.requestPayment}} </td> -->
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </div>
     </div>
