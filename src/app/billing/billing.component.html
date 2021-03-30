@@ -7,11 +7,10 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <div class="card frm-default frm-crete-bill">
-                <div class="row col-sm-12">
-                    <h5 class="card-title">Create New Bill</h5>
-                </div>
-
+            <div class="row col-sm-12">
+                <h5 class="card-title">Create New Bill</h5>
+            </div>
+            <div class="card frm-default frm-crete-bill h-100">
                 <form class="form-font" [formGroup]="createBillForm" (ngSubmit)="onSubmit()">
                     <div class="row">
                         <div class="form-group col-sm-12">
@@ -88,14 +87,14 @@
                         <tr>
                             <th>Id</th>
                             <th>User Id</th>
-                            <th>F. Name</th>
-                            <th>L. Name</th>
+                            <th>Name</th>
+                            <!-- <th>L. Name</th> -->
                             <!-- <th>Email</th> -->
-                            <th>Type</th>
                             <th>Amount</th>
-                            <th>Status</th>
+                            <th>Type</th>
                             <th>Due On</th>
                             <th>Paid On</th>
+                            <th>Status</th>
                             <!-- <th>Req. Payment</th> -->
                         </tr>
                     </ng-template>
@@ -103,17 +102,25 @@
                         <tr>
                             <td>{{bill.id}}</td>
                             <td>{{bill.user?.userId}}</td>
-                            <td>{{bill.user?.fname}}</td>
-                            <td>{{bill.user?.lname}}</td>
+                            <td>{{bill.user?.fname}} {{bill.user?.lname}}</td>
+                            <!-- <td>{{bill.user?.lname}}</td> -->
                             <!-- <td> {{bill.user?.email}} </td> -->
-                            <td> {{bill.name | uppercase}} </td>
-                            <td> {{bill.amount}} </td>
+                            <td> {{bill.amount | currency }} </td>
+                            <td>
+                                <i class="fa fa-fire color-gas" aria-hidden="true"
+                                    *ngIf="bill.name.toLowerCase() == 'gas'"></i>
+                                <i class="fa fa-bolt color-electricity" aria-hidden="true"
+                                    *ngIf="bill.name.toLowerCase() == 'electricity'"></i>
+                                <i class="fa fa-tint color-water " aria-hidden="true"
+                                    *ngIf="bill.name.toLowerCase() == 'water'"></i>
+                                {{bill.name | uppercase}}
+                            </td>
+                            <td> {{bill.dueDate.join('-') | date:'mediumDate'}} </td>
+                            <td> {{bill.paidOn}} </td>
                             <td>
                                 <p-tag value="{{bill.status}}" severity="(bill.status == 'PENDING'?'success':'danger')"
                                     [style]="{'margin':'2%'}" styleClass="custom-active-tag"></p-tag>
                             </td>
-                            <td> {{bill.dueDate.join('-') | date:'mediumDate'}} </td>
-                            <td> {{bill.paidOn}} </td>
                             <!-- <td> {{bill.requestPayment}} </td> -->
                         </tr>
                     </ng-template>

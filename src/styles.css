@@ -160,3 +160,15 @@ body {
 .billing-amt-input .p-inputtext {
     width: 100%;
 }
+
+.color-electricity {
+    color: #43a047;
+}
+
+.color-water {
+    color: #29b6f6;
+}
+
+.color-gas {
+    color: #ff9100;
+}

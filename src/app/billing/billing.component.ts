@@ -148,4 +148,9 @@ export class BillingComponent implements OnInit {
         this.populateData('consumerId', data);
       });
   }
+
+  selectCust(): void {
+    this.getConIds(this.createBillForm.value.userId.userId);
+  }
+
 }
