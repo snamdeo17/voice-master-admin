@@ -81,7 +81,7 @@ body {
 }
 
 .frm-crete-bill .p-calendar {
-    height: 38px !important;
+    height: 30px !important;
 }
 .p-menubar .p-menubar-root-list > .p-menuitem > :hover {
     background: #00bcd4 !important;
@@ -130,4 +130,33 @@ body {
 }
 .bill-for {
     font: size 12px !important;
+}
+
+.cust-details-modal .p-dialog-header {
+    background-image: linear-gradient(180deg, #00acc1, #6dd5ed) !important;
+    color: #fff !important;
+    font-size: 18px;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+.p-inputtext {
+    padding: 0.2rem 0.2rem !important;
+}
+
+.clr-danger {
+    color: #d32f2f;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.frm-default {
+    background: #f8f9fa !important;
+    border: 1px solid #dee2e6;
+}
+
+.billing-amt-input .p-inputtext {
+    width: 100%;
 }
