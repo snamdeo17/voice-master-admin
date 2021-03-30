@@ -20,6 +20,8 @@ export class BillingComponent implements OnInit {
     display: false,
     list: []
   };
+  userList: any = [];
+  conIds: any = [];
   showSingleUserBill: any = {
     enabled: false
   }
@@ -28,7 +30,7 @@ export class BillingComponent implements OnInit {
   createBillForm = this.fb.group({
     userId: ['', Validators.required],
     consumerId: ['', Validators.required],
-    name: ['', Validators.required],
+    // name: ['', Validators.required],
     amount: ['', Validators.required],
     dueDate: ['', Validators.required]
   });
@@ -38,8 +40,7 @@ export class BillingComponent implements OnInit {
     this.billingTypes = [
       { name: 'Electricity', id: 'electricity' },
       { name: 'Water', id: 'water' },
-      { name: 'Gas', id: 'gas' },
-      { name: 'Others', id: 'other' }
+      { name: 'Gas', id: 'gas' }
     ];
 
   }
@@ -53,24 +54,50 @@ export class BillingComponent implements OnInit {
       if (action && userId) {
         this.showSingleUserBill.enabled = true;
         this.showSingleUserBill.userId = userId;
-        this.populateData(action, userId)
+        this.getUsers(userId);
         this.getBills(userId);
+        this.getConIds(userId);
       }
       else {
         // Fetch All bills;
         this.resetCreateBillForm();
+        this.getUsers();
         this.getBills();
       }
     });
   }
 
-  populateData(action?: string, userId?: number) {
-    if (action == 'createBill') {
-      this.createBillForm.controls.userId.setValue(userId);
+  populateData(controlName?: string, value?: any) {
+    if (controlName == 'userId') {
+      this.createBillForm.controls.userId.setValue(value);
     }
+    if (controlName == 'consumerId') {
+      this.createBillForm.controls.consumerId.setValue(value);
+    }
+    //this.createBillForm.patchValue({ userId: value })
   }
 
-
+  getUsers(userId?: number): void {
+    let getData: any = {};
+    getData.url = '/api/customer';
+    if (userId) {
+      getData.url = '/api/customer/' + userId;
+    }
+    this.restService.getData(getData)
+      .subscribe((data: any) => {
+        if (Array.isArray(data)) {
+          this.userList = data;
+        }
+        else {
+          this.userList = [];
+          this.userList.push(data)
+          this.populateData('userId', data);
+        }
+        this.userList.forEach(element => {
+          element['displayName'] = element.fname + " " + element.lname + "(" + element.userId + ")";
+        });
+      });
+  }
   getBills(userId?: number): void {
     let getData: any = {};
     getData.url = '/api/bill';
@@ -78,11 +105,9 @@ export class BillingComponent implements OnInit {
     if (userId) {
       getData.url = '/api/bill/' + userId;
       this.showSingleUserBill.enabled = true;
-
     }
     this.restService.getData(getData)
       .subscribe((data: any) => {
-        console.log(data)
         this.bills.list = data;
         this.bills.display = true;
       });
@@ -91,12 +116,12 @@ export class BillingComponent implements OnInit {
     let postData: any = {};
     postData.url = '/api/bill';
     postData.data = this.createBillForm.value;
-    postData.data.name = this.createBillForm.value.name.id;
-    console.log(postData)
+    postData.data.name = this.createBillForm.value.consumerId.type;
+    postData.data.consumerId = this.createBillForm.value.consumerId.consumerId;
+    postData.data.userId = this.createBillForm.value.userId.userId;
     this.restService.postData(postData)
       .subscribe((data: any) => {
-        console.log(data)
-        this.messageService.add({ key: 'success', severity: 'success', summary: 'Success', detail: 'Via MessageService' });
+        this.messageService.add({ key: 'success', severity: 'success', summary: 'Success', detail: data.description });
         this.resetCreateBillForm();
         if (this.showSingleUserBill.enabled) {
           this.getBills(this.showSingleUserBill.userId);
@@ -108,5 +133,19 @@ export class BillingComponent implements OnInit {
   }
   resetCreateBillForm() {
     this.createBillForm.reset();
+  }
+
+
+  getConIds(userId: number): void {
+    let getData: any = {};
+    getData.url = '/api/bill/createConsumerUserMap/' + userId;
+    this.restService.getData(getData)
+      .subscribe((data: any) => {
+        this.conIds = data;
+        this.conIds.forEach(element => {
+          element['displayName'] = element.consumerId + ": " + element.type.toUpperCase();
+        });
+        this.populateData('consumerId', data);
+      });
   }
 }

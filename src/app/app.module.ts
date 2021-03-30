@@ -22,10 +22,13 @@ import { DropdownModule } from 'primeng/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule } from 'primeng/calendar';
 import { ToastModule } from 'primeng/toast';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
-import {SkeletonModule} from 'primeng/skeleton';
-import {TooltipModule} from 'primeng/tooltip';
+import { SkeletonModule } from 'primeng/skeleton';
+import { TooltipModule } from 'primeng/tooltip';
+import { DialogModule } from 'primeng/dialog';
+import { TabViewModule } from 'primeng/tabview';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CustomersComponent } from './customers/customers.component';
@@ -62,7 +65,10 @@ import { ChildComponent } from './parent/child/child.component';
     TableModule,
     TagModule,
     SkeletonModule,
-    TooltipModule
+    TooltipModule,
+    DialogModule,
+    TabViewModule,
+    InputNumberModule
   ],
   providers: [
     FilterService,

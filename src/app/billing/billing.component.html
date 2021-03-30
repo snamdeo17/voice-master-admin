@@ -7,53 +7,58 @@
     </div>
     <div class="row">
         <div class="col-sm-3">
-            <div class="card custom-shadow frm-crete-bill">
+            <div class="card frm-default frm-crete-bill">
                 <div class="row col-sm-12">
                     <h5 class="card-title">Create New Bill</h5>
                 </div>
 
                 <form class="form-font" [formGroup]="createBillForm" (ngSubmit)="onSubmit()">
                     <div class="row">
-                        <div class="form-group col-sm-6">
-                            <label for="user-id">User Id*</label>
-                            <input type="number" class="form-control" formControlName="userId" required>
-                            <span class="text-required"
-                                *ngIf="!createBillForm.controls['userId'].valid && createBillForm.controls['userId']?.touched">
-                                *Required</span>
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <label for="user-id">Consumer Id*</label>
-                            <input type="number" class="form-control" formControlName="consumerId" required>
-                            <span class="text-required"
-                                *ngIf="!createBillForm.controls['consumerId'].valid && createBillForm.controls['consumerId']?.touched">
-                                *Required</span>
-                        </div>
-                        <div class="form-group col-sm-6">
+                        <div class="form-group col-sm-12">
                             <div class="d-flex flex-column billing-type-input">
-                                <label for="type">Type</label>
-                                <p-dropdown [options]="billingTypes" optionLabel="name" placeholder="Select type"
-                                    formControlName="name" required></p-dropdown>
+                                <label for="user-id">User Id*</label>
+                                <p-dropdown [options]="userList" formControlName="userId" optionLabel="displayName"
+                                    [filter]="true" filterBy="displayName" [showClear]="true"
+                                    placeholder="Select a user" (onChange)="selectCust(userId)">
+                                </p-dropdown>
                                 <span class="text-required"
-                                    *ngIf="!createBillForm.controls['name'].valid && createBillForm.controls['name']?.touched">
+                                    *ngIf="!createBillForm.controls['userId'].valid && createBillForm.controls['userId']?.touched">
                                     *Required</span>
                             </div>
                         </div>
-                        <div class="form-group col-sm-6">
-                            <label for="amount">Amount</label>
-                            <input type="number" class="form-control" formControlName="amount" required>
-                            <span class="text-required"
-                                *ngIf="!createBillForm.controls['amount'].valid && createBillForm.controls['amount']?.touched">
-                                *Required</span>
+                        <div class="form-group col-sm-12">
+                            <div class="d-flex flex-column billing-type-input">
+                                <label for="user-id">Consumer Id*</label>
+                                <p-dropdown [options]="conIds" formControlName="consumerId" optionLabel="displayName"
+                                    [filter]="true" filterBy="displayName" [showClear]="true"
+                                    placeholder="Select a consumer id">
+                                </p-dropdown>
+                                <span class="text-required"
+                                    *ngIf="!createBillForm.controls['consumerId'].valid && createBillForm.controls['consumerId']?.touched">
+                                    *Required</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-sm-8">
-                            <label for="amount">Due Date</label>
-                            <p-calendar formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true">
-                            </p-calendar>
-                            <span class="text-required"
-                                *ngIf="!createBillForm.controls['dueDate'].valid && createBillForm.controls['dueDate']?.touched">
-                                *Required</span>
+                        <div class="form-group col-sm-5">
+                            <div class="d-flex flex-column billing-amt-input">
+                                <label for="amount">Amount</label>
+                                <!-- <input type="number" class="form-control" formControlName="amount" required> -->
+                                <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN"
+                                    [minFractionDigits]="2" formControlName="amount" required>
+                                </p-inputNumber>
+                                <span class="text-required"
+                                    *ngIf="!createBillForm.controls['amount'].valid && createBillForm.controls['amount']?.touched">
+                                    *Required</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-7">
+                            <div class="d-flex flex-column">
+                                <label for="amount">Due Date</label>
+                                <p-calendar formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true">
+                                </p-calendar>
+                                <span class="text-required"
+                                    *ngIf="!createBillForm.controls['dueDate'].valid && createBillForm.controls['dueDate']?.touched">
+                                    *Required</span>
+                            </div>
                         </div>
                     </div>
                     <div class="row text-right">

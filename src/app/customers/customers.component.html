@@ -34,8 +34,18 @@
 
                         <td>
                             <button pButton type="button" icon="pi pi-money-bill" pTooltip="Create/View Bills"
-                                class="p-button-outlined p-button-rounded p-ripple p-button p-component p-button-icon-only"
+                                class="mr-1 p-button-outlined p-button-rounded p-ripple p-button p-component p-button-icon-only"
                                 (click)="rowAction('createBill', customer)"></button>
+                            <button pButton type="button" icon="pi pi-ellipsis-v" pTooltip="Mange User"
+                                (click)="manageCustomer(customer)"
+                                class="p-button-outlined p-button-rounded p-ripple p-button p-component p-button-icon-only"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="emptymessage">
+                    <tr>
+                        <td [attr.colspan]="6" class="text-center font-weight-bold">
+                            No records found
                         </td>
                     </tr>
                 </ng-template>
@@ -43,4 +53,90 @@
         </div>
     </div>
 </div>
+
+<!-- dialog section -->
+<p-dialog [(visible)]="manageCustDialog" [modal]="true" [style]="{width: '70vw'}" styleClass="cust-details-modal">
+    <ng-template pTemplate="header">
+        <label>Manage Customer:
+            {{selectedCust[0].fname}} {{selectedCust[0].lname}} (User Id: {{selectedCust[0].userId}})
+        </label>
+
+    </ng-template>
+    <div>
+        <p-tabView>
+            <p-tabPanel header="Consumer Details">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <!-- Table -->
+                        <div class="custom-table">
+                            <p-table [value]="conIds" autoLayout="true">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Con. Id</th>
+                                        <th>Type</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="body" let-conDetails let-i="rowIndex">
+                                    <tr>
+                                        <td>{{i + 1}}</td>
+                                        <td>{{conDetails.consumerId}}</td>
+                                        <td>{{conDetails.type}}</td>
+                                        <td>
+                                            <i class="pi pi-trash clr-danger cursor-pointer"></i>
+                                            <!-- <button pButton type="button" icon="pi pi-trash"
+                                                pTooltip="Create/View Bills"
+                                                class="mr-1 p-button-outlined p-button-rounded p-ripple p-button p-component p-button-icon-only p-button-danger"
+                                                (click)="rowAction('createBill', customer)"></button> -->
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td [attr.colspan]="4" class="text-center font-weight-bold">
+                                            No records found
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- Form -->
+                        <div class="create-con-form">
+                            <form class="form-font" [formGroup]="createConsumerFrm" (ngSubmit)="createConsumer()">
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <div class="d-flex flex-column billing-type-input dropdown-sm">
+                                            <p-dropdown [options]="billingTypes" optionLabel="name"
+                                                placeholder="Select type" formControlName="type" required></p-dropdown>
+                                            <span class="text-required"
+                                                *ngIf="!createConsumerFrm.controls['type'].valid && createConsumerFrm.controls['type']?.touched">
+                                                *Required</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button type="submit" class="btn btn-info btn-sm mr-1"
+                                            [disabled]="!createConsumerFrm.valid">Create</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </p-tabPanel>
+            <p-tabPanel header="Other Details">
+                Content 2
+            </p-tabPanel>
+        </p-tabView>
+
+    </div>
+    <ng-template pTemplate="footer">
+        <button (click)="manageCustDialog=false" label="Close" pButton pRipple type="button" class="p-button-outlined"
+            styleClass="p-button-sm"></button>
+    </ng-template>
+</p-dialog>
 <p-toast key="success"></p-toast>
