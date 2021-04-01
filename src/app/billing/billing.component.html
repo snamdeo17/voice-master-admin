@@ -18,7 +18,7 @@
                                 <label for="user-id">User Id*</label>
                                 <p-dropdown [options]="userList" formControlName="userId" optionLabel="displayName"
                                     [filter]="true" filterBy="displayName" [showClear]="true"
-                                    placeholder="Select a user" (onChange)="selectCust(userId)">
+                                    placeholder="Select a user" (onChange)="selectCust()">
                                 </p-dropdown>
                                 <span class="text-required"
                                     *ngIf="!createBillForm.controls['userId'].valid && createBillForm.controls['userId']?.touched">
@@ -80,7 +80,7 @@
             </div>
             <div class="custom-table">
                 <p-table [value]="bills.list" autoLayout="true" [paginator]="true" [rows]="10"
-                    [showCurrentPageReport]="true"
+                    [showCurrentPageReport]="true" dataKey="id" [loading]="loading"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                     [rowsPerPageOptions]="[10,25,50]">
                     <ng-template pTemplate="header">
@@ -118,12 +118,19 @@
                                 {{bill.name | uppercase}}
                             </td>
                             <td> {{bill.dueDate.join('-') | date:'mediumDate'}} </td>
-                            <td> {{bill.paidOn}} </td>
+                            <td> {{bill.paidOn.join('-') | date:'mediumDate'}} </td>
                             <td>
                                 <p-tag value="{{bill.status}}" severity="(bill.status == 'PENDING'?'success':'danger')"
                                     [style]="{'margin':'2%'}" styleClass="custom-active-tag"></p-tag>
                             </td>
                             <!-- <td> {{bill.requestPayment}} </td> -->
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td [attr.colspan]="9" class="text-center font-weight-bold">
+                                No records found
+                            </td>
                         </tr>
                     </ng-template>
                 </p-table>
