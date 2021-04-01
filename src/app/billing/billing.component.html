@@ -118,7 +118,7 @@
                                 {{bill.name | uppercase}}
                             </td>
                             <td> {{bill.dueDate.join('-') | date:'mediumDate'}} </td>
-                            <td> {{bill.paidOn.join('-') | date:'mediumDate'}} </td>
+                            <td> {{bill.paidOn?.join('-') | date:'mediumDate'}} </td>
                             <td>
                                 <p-tag value="{{bill.status}}" severity="(bill.status == 'PENDING'?'success':'danger')"
                                     [style]="{'margin':'2%'}" styleClass="custom-active-tag"></p-tag>
