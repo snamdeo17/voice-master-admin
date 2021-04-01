@@ -75,7 +75,7 @@
                                         <th>#</th>
                                         <th>Con. Id</th>
                                         <th>Type</th>
-                                        <th>Action</th>
+                                        <!-- <th>Action</th> -->
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="body" let-conDetails let-i="rowIndex">
@@ -83,13 +83,10 @@
                                         <td>{{i + 1}}</td>
                                         <td>{{conDetails.consumerId}}</td>
                                         <td>{{conDetails.type}}</td>
-                                        <td>
+                                        <!-- <td>
                                             <i class="pi pi-trash clr-danger cursor-pointer"></i>
-                                            <!-- <button pButton type="button" icon="pi pi-trash"
-                                                pTooltip="Create/View Bills"
-                                                class="mr-1 p-button-outlined p-button-rounded p-ripple p-button p-component p-button-icon-only p-button-danger"
-                                                (click)="rowAction('createBill', customer)"></button> -->
-                                        </td>
+                                           
+                                        </td> -->
                                     </tr>
                                 </ng-template>
                                 <ng-template pTemplate="emptymessage">
