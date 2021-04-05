@@ -25,6 +25,8 @@ export class BillingComponent implements OnInit {
   showSingleUserBill: any = {
     enabled: false
   }
+  newAccess: boolean;
+
   //selectedType = new FormControl('');
 
   createBillForm = this.fb.group({
@@ -34,6 +36,9 @@ export class BillingComponent implements OnInit {
     amount: ['', Validators.required],
     dueDate: ['', Validators.required]
   });
+
+  dueDateMinDateValue: Date = new Date();
+
 
   constructor(private fb: FormBuilder, private restService: RestService, private messageService: MessageService, private activatedRoute: ActivatedRoute) {
 
@@ -50,7 +55,6 @@ export class BillingComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(params => {
       let action = params['action'] ? params['action'] : undefined;
       let userId = params['userId'] ? params['userId'] : undefined;
-      console.log(action, userId)
       if (action && userId) {
         this.showSingleUserBill.enabled = true;
         this.showSingleUserBill.userId = userId;
@@ -152,5 +156,11 @@ export class BillingComponent implements OnInit {
   selectCust(): void {
     this.getConIds(this.createBillForm.value.userId.userId);
   }
-
+  dueDateSelected(): void {
+    let tempDate = new Date(this.createBillForm.value.dueDate)
+    tempDate.setHours(23);
+    tempDate.setMinutes(59);
+    tempDate.setSeconds(59);
+    this.createBillForm.value.dueDate = tempDate;
+  }
 }

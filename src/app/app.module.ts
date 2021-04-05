@@ -35,6 +35,7 @@ import { CustomersComponent } from './customers/customers.component';
 import { CustomersChildComponent } from './customers/customers-child/customers-child.component';
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './parent/child/child.component';
+import { TestingComponent } from './testing/testing.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ChildComponent } from './parent/child/child.component';
     CustomersComponent,
     CustomersChildComponent,
     ParentComponent,
-    ChildComponent
+    ChildComponent,
+    TestingComponent
   ],
   imports: [
     BrowserModule,

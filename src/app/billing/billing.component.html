@@ -52,7 +52,8 @@
                         <div class="form-group col-sm-7">
                             <div class="d-flex flex-column">
                                 <label for="amount">Due Date</label>
-                                <p-calendar formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true">
+                                <p-calendar (onSelect)="dueDateSelected()" [minDate]="dueDateMinDateValue"
+                                    formControlName="dueDate" dateFormat="yy-mm-dd" required showIcon="true">
                                 </p-calendar>
                                 <span class="text-required"
                                     *ngIf="!createBillForm.controls['dueDate'].valid && createBillForm.controls['dueDate']?.touched">

@@ -25,8 +25,6 @@ export class ServerErrorInterceptor implements HttpInterceptor {
           location.reload(true);
           //return throwError(error);
         } else {
-          console.log(error)
-          console.log(message)
           this.notificationService.showError(message);
           return throwError(error);
         }

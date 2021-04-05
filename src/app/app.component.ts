@@ -53,13 +53,11 @@ export class AppComponent implements OnInit {
     //Subscribe toaster messages
 
     this.notificationService.successToastr.subscribe((message) => {
-      console.log(message)
       this.messageService.add({ key: 'successToastr', severity: 'success', summary: 'Success', detail: message });
 
     });
 
     this.notificationService.errorToastr.subscribe((message) => {
-      console.log(message)
       this.messageService.add({ key: 'errorToastr', severity: 'error', summary: 'Error', detail: message });
     });
   }
