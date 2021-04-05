@@ -93,6 +93,10 @@ export class CustomersComponent implements OnInit {
 
   resetCreateConIdFrm(): void {
     this.createConsumerFrm.reset();
+    if (this.manageCustDialog) {
+      this.createConsumerFrm.controls.userId.setValue(this.selectedCust[0].userId);
+
+    }
   }
 }
 
