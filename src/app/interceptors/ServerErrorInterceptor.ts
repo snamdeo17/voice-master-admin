@@ -15,8 +15,8 @@ export class ServerErrorInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       retry(1),
       catchError((error: HttpErrorResponse) => {
-        let message = (error.error ? (error.error.message ? error.error.message : error.message) : error.message);
-        //let message = (error.error ? (error.error.description ? error.error.description : error.message) : error.message);
+        //let message = (error.error ? (error.error.message ? error.error.message : error.message) : error.message);
+        let message = (error.error ? (error.error.description ? error.error.description : (error.message ? error.message : 'Unknown Error')) : 'Unknown Error');
 
         if (error.status === 401) { 
           // log out from application
