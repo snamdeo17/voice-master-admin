@@ -172,3 +172,13 @@ body {
 .color-gas {
     color: #ff9100;
 }
+
+.search-accordian .p-accordion-header {
+    display: none;
+}
+
+.search-accordian .p-accordion-content {
+    border: 1px solid #dee2e6 !important;
+    margin-bottom: 0.5rem !important;
+    background: #f8f9fa;
+}

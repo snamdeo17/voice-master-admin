@@ -36,7 +36,9 @@ export class BillingComponent implements OnInit {
     amount: ['', Validators.required],
     dueDate: ['', Validators.required]
   });
-
+  searchForm = this.fb.group({
+    userId: ['', Validators.required]
+  });
   dueDateMinDateValue: Date = new Date();
 
 
@@ -138,7 +140,15 @@ export class BillingComponent implements OnInit {
   resetCreateBillForm() {
     this.createBillForm.reset();
   }
-
+  onSearch() {
+    let userId = this.searchForm.value.userId;
+    console.log(this.searchForm.value)
+    this.getBills(userId);
+  }
+  resetresetSearchForm() {
+    this.searchForm.reset();
+    this.getUsers();
+  }
 
   getConIds(userId: number): void {
     let getData: any = {};

@@ -29,6 +29,7 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DialogModule } from 'primeng/dialog';
 import { TabViewModule } from 'primeng/tabview';
 import { InputNumberModule } from 'primeng/inputnumber';
+import {AccordionModule} from 'primeng/accordion';
 
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CustomersComponent } from './customers/customers.component';
@@ -70,7 +71,8 @@ import { TestingComponent } from './testing/testing.component';
     TooltipModule,
     DialogModule,
     TabViewModule,
-    InputNumberModule
+    InputNumberModule,
+    AccordionModule
   ],
   providers: [
     FilterService,
