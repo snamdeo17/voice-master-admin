@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group col-sm-5">
                             <div class="d-flex flex-column billing-amt-input">
-                                <label for="amount">Amount</label>
+                                <label for="amount">Amount($)</label>
                                 <!-- <input type="number" class="form-control" formControlName="amount" required> -->
                                 <p-inputNumber inputId="locale-indian" mode="decimal" locale="en-IN"
                                     [minFractionDigits]="2" formControlName="amount" required>
@@ -158,8 +158,9 @@
                             <td> {{bill.dueDate.join('-') | date:'mediumDate'}} </td>
                             <td> {{bill.paidOn?.join('-') | date:'mediumDate'}} </td>
                             <td>
-                                <p-tag value="{{bill.status}}" severity="(bill.status == 'PENDING'?'success':'danger')"
-                                    [style]="{'margin':'2%'}" styleClass="custom-active-tag"></p-tag>
+                                <p-tag value="{{bill.status}}"
+                                    severity="{{(bill.status == 'PENDING'?'warning':(bill.status == 'PAID'?'success':'danger'))}}"
+                                    [style]="{'margin':'2%'}" styleClass="custom-status-tag"></p-tag>
                             </td>
                             <!-- <td> {{bill.requestPayment}} </td> -->
                         </tr>

@@ -100,7 +100,9 @@ export class BillingComponent implements OnInit {
           this.populateData('userId', data);
         }
         this.userList.forEach(element => {
-          element['displayName'] = element.fname + " " + element.lname + "(" + element.userId + ")";
+          //if (element) {
+            element['displayName'] = element.fname + " " + element.lname + "(" + element.userId + ")";
+          //}
         });
       });
   }
@@ -119,14 +121,18 @@ export class BillingComponent implements OnInit {
       });
   }
   onSubmit() {
+    console.log(this.createBillForm.value)
     let postData: any = {};
     postData.url = '/api/bill';
-    postData.data = this.createBillForm.value;
+    postData.data = JSON.parse(JSON.stringify(this.createBillForm.value));
     postData.data.name = this.createBillForm.value.consumerId.type;
     postData.data.consumerId = this.createBillForm.value.consumerId.consumerId;
     postData.data.userId = this.createBillForm.value.userId.userId;
+    console.log(postData)
+
     this.restService.postData(postData)
       .subscribe((data: any) => {
+        console.log(postData)
         this.messageService.add({ key: 'success', severity: 'success', summary: 'Success', detail: data.description });
         this.resetCreateBillForm();
         if (this.showSingleUserBill.enabled) {
