@@ -6,7 +6,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-md-3 col-12 create-bill-section">
             <div class="row mb-1">
                 <div class="col-sm-12">
                     <h5 class="card-title">Create New Bill</h5>
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row text-right">
+                    <div class="row text-right form-btn-section">
                         <div class="col-sm-12">
                             <button type="submit" class="btn btn-info btn-sm mr-1"
                                 [disabled]="!createBillForm.valid">Submit</button>
@@ -74,16 +74,16 @@
                 </form>
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-md-9 col-12 right-table-section">
             <div class="row mb-1">
-                <div class="col-sm-8">
+                <div class="col-sm-8 col-6">
                     <h5 class="card-title">All Bills <span class="bill-for" *ngIf="showSingleUserBill.enabled">-
                             {{bills?.list[0]?.user?.fname}}&nbsp;{{bills?.list[0]?.user?.lname}}
                             <!-- (User Id:
                             {{showSingleUserBill.userId}}) -->
                         </span></h5>
                 </div>
-                <div class="col-sm-4 text-right">
+                <div class="col-sm-4 col-6 text-right">
                     <button pButton pRipple type="button" icon="pi pi-filter" class="p-button-rounded p-button-outlined"
                         (click)="displaySearchPanel = !displaySearchPanel"></button>
                 </div>

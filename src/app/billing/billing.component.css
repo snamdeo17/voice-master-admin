@@ -2,3 +2,24 @@
     padding: 1.2rem;
     /* border: 1px solid #00ACC1; */
 }
+
+/* Responsive css*/
+@media only screen and (max-width:767px) {
+    .form-btn-section{
+        text-align: left !important;
+    }
+    .create-bill-section {
+        margin-bottom: 78px;
+    }
+}
+@media only screen and (min-width:768px) and (max-width:1024px) {
+    .create-bill-section {
+        max-width: 35% !important;
+    }
+    .create-bill-section label {
+        font-size: 10px;
+    }
+    .right-table-section {
+        max-width: 65% !important;
+    }
+}
