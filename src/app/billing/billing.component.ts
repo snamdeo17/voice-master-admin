@@ -5,6 +5,9 @@ import { DatePipe } from '@angular/common';
 import { MessageService } from 'primeng/api';
 import { ActivatedRoute } from '@angular/router';
 
+import { of, pipe } from 'rxjs'
+import { filter, map } from 'rxjs/operators';
+
 @Component({
   selector: 'app-billing',
   templateUrl: './billing.component.html',
@@ -54,6 +57,18 @@ export class BillingComponent implements OnInit {
 
   ngOnInit() {
 
+    const num = of(1, 2, 3, 4,);
+    //const sqrVal = map((val: number) => val*val);
+    const filterNums = pipe(
+      filter((x:number)=> (x%2 !== 0)),
+      map((n:number)=> n*n)
+
+    )
+
+    const sqrNum = filterNums(num);
+
+   sqrNum.subscribe(x=>{console.log(x)})
+
     this.activatedRoute.queryParams.subscribe(params => {
       let action = params['action'] ? params['action'] : undefined;
       let userId = params['userId'] ? params['userId'] : undefined;
@@ -101,7 +116,7 @@ export class BillingComponent implements OnInit {
         }
         this.userList.forEach(element => {
           //if (element) {
-            element['displayName'] = element.fname + " " + element.lname + "(" + element.userId + ")";
+          element['displayName'] = element.fname + " " + element.lname + "(" + element.userId + ")";
           //}
         });
       });
